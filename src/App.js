@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import TravelForm from './components/TravelForm';
 import './App.css';
 
 function App() {
@@ -11,16 +10,6 @@ function App() {
   ]);
 
   const [selectedCountry, setSelectedCountry] = useState('all');
-
-  // Функция добавления нового путешествия
-  const handleAddTravel = (newTravel) => {
-    const travel = {
-      ...newTravel,
-      id: Date.now(),
-      likes: 0
-    };
-    setTravels([...travels, travel]);
-  };
 
   const countries = [...new Set(travels.map(t => t.country))].sort();
 
@@ -34,15 +23,43 @@ function App() {
     ));
   };
 
+  // Функция добавления нового путешествия
+  const handleAddTravel = (newTravel) => {
+    const travel = {
+      ...newTravel,
+      id: Date.now(),
+      likes: 0
+    };
+    setTravels([...travels, travel]);
+  };
+
   const totalLikes = travels.reduce((sum, t) => sum + t.likes, 0);
 
   return (
     <div className="app">
       <h1>🌍 Каталог путешествий</h1>
       
-      {/* ФОРМА ДОБАВЛЕНИЯ — теперь она здесь! */}
-      <TravelForm onAdd={handleAddTravel} />
+      {/* Форма добавления */}
+      <div className="add-form">
+        <h3>✈️ Добавить новое путешествие</h3>
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          const form = e.target;
+          handleAddTravel({
+            country: form.country.value,
+            title: form.title.value,
+            description: form.description.value
+          });
+          form.reset();
+        }}>
+          <input name="country" placeholder="Страна" required />
+          <input name="title" placeholder="Название" required />
+          <textarea name="description" placeholder="Описание" rows="3" required />
+          <button type="submit">+ Добавить</button>
+        </form>
+      </div>
       
+      {/* Фильтр */}
       <div className="filter">
         <label>Фильтр по стране: </label>
         <select value={selectedCountry} onChange={(e) => setSelectedCountry(e.target.value)}>
@@ -51,6 +68,7 @@ function App() {
         </select>
       </div>
 
+      {/* Карточки */}
       <div className="travels-grid">
         {filteredTravels.map(travel => (
           <div key={travel.id} className="travel-card">
@@ -62,6 +80,7 @@ function App() {
         ))}
       </div>
 
+      {/* Статистика */}
       <div className="stats">
         <p>Всего путешествий: {travels.length}</p>
         <p>Всего лайков: {totalLikes}</p>

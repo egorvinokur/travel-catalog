@@ -17,10 +17,57 @@ body {
 
 h1 {
   text-align: center;
-  margin-bottom: 30px;
   color: #2c3e50;
+  margin-bottom: 30px;
 }
 
+/* Форма добавления */
+.add-form {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.add-form h3 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.add-form input,
+.add-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.add-form textarea {
+  resize: vertical;
+  font-family: inherit;
+}
+
+.add-form button {
+  width: 100%;
+  padding: 12px;
+  background: #ffd700;
+  color: #2c3e50;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.add-form button:hover {
+  background: #ffe44d;
+}
+
+/* Фильтр */
 .filter {
   background: white;
   padding: 15px;
@@ -35,6 +82,7 @@ h1 {
   font-size: 16px;
 }
 
+/* Сетка карточек */
 .travels-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -42,6 +90,7 @@ h1 {
   margin-bottom: 30px;
 }
 
+/* Карточка */
 .travel-card {
   background: white;
   border-radius: 12px;
@@ -52,7 +101,6 @@ h1 {
 
 .travel-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .travel-card h3 {
@@ -82,7 +130,6 @@ h1 {
   padding: 8px 16px;
   border-radius: 20px;
   cursor: pointer;
-  transition: all 0.2s;
 }
 
 .travel-card button:hover {
@@ -90,6 +137,7 @@ h1 {
   color: white;
 }
 
+/* Статистика */
 .stats {
   background: white;
   border-radius: 8px;
